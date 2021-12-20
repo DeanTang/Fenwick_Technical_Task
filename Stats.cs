@@ -102,15 +102,58 @@ namespace Fenwick_Technical_Task
                                 }
                             }
 
-                            Console.WriteLine("# of Entries: " + count);
-                            Console.WriteLine("Min. value: " + min);
-                            Console.WriteLine("Max. value: " + max);
-                            Console.WriteLine("Avg. value: " + total/count);
+                            string[] table_outputs = new string[5];
+                            table_outputs[0] = "| # of Entries    | " + count;
+                            table_outputs[1] = "| Min. value      | " + min;
+                            table_outputs[2] = "| Max. value      | " + max;
+                            table_outputs[3] = "| Total value     | " + total;
+                            table_outputs[4] = "| Avg. value      | " + total/count;
+
+                            int max_length = 0;
+
+                            for (int i = 0; i < table_outputs.Length; i++)
+                            {
+                                if (table_outputs[i].Length > max_length)
+                                {
+                                    max_length = table_outputs[i].Length;
+                                }
+                            }
+
+                            Console.WriteLine(new string('-', max_length+1));
+
+                            for (int i = 0; i < table_outputs.Length; i++)
+                            {
+                                if (table_outputs[i].Length < max_length)
+                                {
+                                    int space_diff = max_length - table_outputs[i].Length;
+                                    for (int j = 0; j < space_diff; j++)
+                                    {
+                                        table_outputs[i] += " ";
+                                    }
+                                }
+                                table_outputs[i] += "|";
+                                Console.WriteLine(table_outputs[i]);
+                            }
+
+                            Console.WriteLine(new string('-', max_length+1));
                        }
                    }
                    else
                    {
-                       // if (args[0] == "help")
+                        if (args[0] == "help")
+                        {
+                            Console.WriteLine("List of commands available: ");
+                            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
+                            Console.WriteLine("| Command  |   Syntax                                             |     Description                                         |");
+                            Console.WriteLine("|---------------------------------------------------------------------------------------------------------------------------|");
+                            Console.WriteLine("| record   |   record <filename.txt> <num1> [<num2>...<numx>]     |     Save one or more values into the specified file.    |");
+                            Console.WriteLine("| summary  |   summary <filename.txt>                             |     Print a summary of the values into the console.     |");
+                            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
+
+                            Console.WriteLine("Keys:");
+                            Console.WriteLine("<> - placeholder");
+                            Console.WriteLine("[] - optional");
+                        }
                    }
                }
             }  
