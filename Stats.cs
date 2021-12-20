@@ -18,45 +18,99 @@ namespace Fenwick_Technical_Task
             {
                if (args[0] == "record")
                {
-                   string path = @args[1];
-
-                   // Create text file if the file doesn't exist
-                   if (!File.Exists(path))
+                   // The record function needs at least 3 arguments to be correct
+                   if (args.Length >= 3)
                    {
-                       for (int i = 2; i < args.Length; i++)
-                       {
-                            if (IsDecimal(args[i]))
+                       string path = @args[1];
+
+                        // Create text file if the file doesn't exist
+                        if (!File.Exists(path))
+                        {
+                            for (int i = 2; i < args.Length; i++)
                             {
-                                // Create file to write to
-                                using (StreamWriter sw = File.CreateText(path))
-                                {
-                                    sw.WriteLine(args[i]);
-                                }
+                                    if (IsDecimal(args[i]))
+                                    {
+                                        // Create file to write to
+                                        using (StreamWriter sw = File.CreateText(path))
+                                        {
+                                            sw.WriteLine(args[i]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Invalid argument: {0} - This command requires a decimal number after the file name.",args[i]);
+                                    }
                             }
-                            else
+                            
+                        }
+                        else
+                        {
+                            for (int i = 2; i < args.Length; i++)
                             {
-                                Console.WriteLine("Invalid argument: {0} - This command requires a decimal number after the file name.",args[i]);
+                                if (IsDecimal(args[i]))
+                                    {
+                                        // Append record to text file if it already exists
+                                        using (StreamWriter sw = File.AppendText(path))
+                                        {
+                                            sw.WriteLine(args[i]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Invalid argument: {0} - This command requires a decimal number after the file name.",args[i]);
+                                    }
                             }
-                       }
-                       
+                        }
                    }
                    else
                    {
-                       for (int i = 2; i < args.Length; i++)
+                       Console.WriteLine("Invalid input: Record needs at least 2 other arguments: filename and value.");
+                   }
+               }
+               else
+               {
+                   if (args[0] == "summary")
+                   {
+                       string path = @args[1];
+                       using (StreamReader sr = File.OpenText(path))
                        {
-                           if (IsDecimal(args[i]))
+                            string s = "";
+                            decimal total = 0;
+                            decimal count = 0;
+
+                            // Assuming that the numbers would not go beyond these extremes
+                            decimal min = 9999999999;
+                            decimal max = -9999999999;
+
+                            while ((s = sr.ReadLine()) != null)
                             {
-                                // Append record to text file if it already exists
-                                using (StreamWriter sw = File.AppendText(path))
+                                if (IsDecimal(s))
                                 {
-                                    sw.WriteLine(args[i]);
+                                    decimal temp = Convert.ToDecimal(s);
+                                    total += temp;
+                                    count++;
+
+                                    if (temp < min) 
+                                    {
+                                        min = temp;
+                                    }
+
+                                    if (temp > max)
+                                    {
+                                        max = temp;
+                                    }
                                 }
                             }
-                            else
-                            {
-                                Console.WriteLine("Invalid argument: This command requires a decimal number after the file name.");
-                            }
+
+                            Console.WriteLine("# of Entries: " + count);
+                            Console.WriteLine("Min. value: " + min);
+                            Console.WriteLine("Max. value: " + max);
+                            Console.WriteLine("Avg. value: " + total/count);
                        }
+                   }
+                   else
+                   {
+                       // if (args[0] == "help")
                    }
                }
             }  
