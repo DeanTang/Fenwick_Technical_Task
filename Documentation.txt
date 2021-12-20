@@ -1,0 +1,5 @@
+Documentation:
+-To execute this program using cmd, it must first be compiled using csc.exe.
+-Set up Environment Variable with the directory for csc.exe.
+-
+

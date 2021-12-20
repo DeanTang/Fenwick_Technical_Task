@@ -1,0 +1,9 @@
+Input: Arguments1, Argumentsn2...Argumentsnx
+
+Output: Informative message printed, summary
+
+Storage (read & write): list of numbers 
+
+Errors: 
+-Incorrect commands (letters instead of numbers)
+-Unavailable file
