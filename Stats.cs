@@ -115,7 +115,7 @@ namespace Fenwick_Technical_Task
                                             count++;
 
                                             // Check for new minimum
-                                            if (temp < min) 
+                                            if (temp < min)
                                             {
                                                 min = temp;
                                             }

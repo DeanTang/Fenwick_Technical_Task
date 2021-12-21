@@ -1,5 +1,28 @@
 Documentation:
--To execute this program using cmd, it must first be compiled using csc.exe.
--Set up Environment Variable with the directory for csc.exe.
--
 
+Compile:
+- Set up Environment Variable with the directory for csc.exe.
+- In cmd, syntax: csc Stats.cs
+
+Run:
+- In cmd, syntax example: Stats.exe <command> <filename> <val1> [<val2>....<valn>]
+
+Note: List of commands can be viewed using: Stats.exe help;
+
+List of commands available:
+-----------------------------------------------------------------------------------------------------------------------------
+| Command  |   Syntax                                             |     Description                                         |
+|---------------------------------------------------------------------------------------------------------------------------|
+| record   |   record <filename.txt> <num1> [<num2>...<numx>]     |     Save one or more values into the specified file.    |
+| summary  |   summary <filename.txt>                             |     Print a summary of the values into the console.     |
+-----------------------------------------------------------------------------------------------------------------------------
+Keys:
+<> - placeholder
+[] - optional
+
+Errors handled:
+- Wrong input when expecting a decimal number.
+- Not enough arguments.
+- The file which the program needs to access was not found.
+- Invalid command.
+- No commands found.
